@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-
+const PORT = process.env.PORT || 5500;
 app.use(express.static('../../public_html/blockland/'));
 app.use(express.static('../../public_html/libs'));
 app.use(express.static('../../public_html/blockland/'));
@@ -47,8 +47,8 @@ io.sockets.on('connection', function(socket){
 	})
 });
 
-http.listen(2002, function(){
-  console.log('listening on *:2002');
+http.listen(PORT, function(){
+  console.log(`listening on ${PORT}`);
 });
 
 setInterval(function(){
